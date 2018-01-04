@@ -1,0 +1,23 @@
+{
+  "name": "Vue",
+  "authors": [
+    "yihoo"
+  ],
+  "description": "learn Vue",
+  "main": "",
+  "keywords": [
+    "Vue"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.5.13"
+  }
+}

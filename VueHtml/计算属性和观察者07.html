@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性和观察者</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <p>Original message: {{ message }}</p>
+        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+        <p>Computed reversed message: "{{ reversedMessage1() }}"</p>
+        <p>now:{{now}}</p>
+        <p>another now:{{anow()}}</p>
+    </div>
+</body>
+</html>
+<script>
+    var app=new Vue({
+        el:"#example",
+        data:{
+            message:"Hello!"
+        },
+        computed:{
+            reversedMessage:function () {
+                return this.message.split("").reverse().join("")
+            },
+            now:function () {
+                return Date.now()
+            }
+        },
+        methods:{
+            reversedMessage1:function () {
+                return this.message.split("").reverse().join("");
+            },
+            anow:function () {
+                return Date.now()
+            }
+        }
+    })
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Class与Style的绑定</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" class="a" v-bind:class="{ active: isActive ,'text-danger': hasError}"></div>
+<div id="app-2" v-bind:class="classObject"></div>
+<div id="app-3" v-bind:class="[activeClass, errorClass]"></div>
+<div id="app-4" v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+<my-component  class="baz boo"></my-component>
+</body>
+</html>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            isActive:true,
+            hasError:true
+        }
+    });
+
+    var app2=new Vue({
+        el:"#app-2",
+        data:{
+            isActive: true,
+            error: null
+        },
+        computed:{
+            classObject:function () {
+                return {
+                    active:this.isActive&& !this.error,
+                    'text-danger':this.error&&this.error.type==="fatal"
+                }
+            }
+        }
+    });
+
+    var app3=new Vue({
+        el:"#app-3",
+        data:{
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    });
+
+    var app4=new Vue({
+        el:"#app-4",
+        data:{
+            errorClass:"text-danger",
+            activeClass: 'active',
+            isActive:false
+        }
+    });
+
+    Vue.component("my-component",{
+        template:'<p class="foo bar">Hi</p>'
+    });
+    var vm=new Vue({
+        el:"my-component"
+    })
+</script>

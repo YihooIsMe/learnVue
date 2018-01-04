@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>数据与方法</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="a">
+    </div>
+</body>
+</html>
+<script>
+    var data={a:1};
+
+    var vm=new Vue({
+        el:"#app",
+        data:data
+    });
+
+    console.log(vm.$el===document.getElementById("app"));
+    console.log(vm.$data===data);
+    vm.$watch("a",function (n) { alert("已经改变了") })
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>数据与方法</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{obj.foo}}</p>
+        <button @click="obj.foo = 'baz'">Change it</button>
+    </div>
+</body>
+</html>
+<script>
+    var data={a:1};
+    var vm=new Vue({
+        data:data
+    });
+
+    console.log(vm.a===data.a);
+    vm.a=2;
+    console.log(data.a);
+
+    var obj={
+        foo:"bar"
+    };
+    Object.freeze(obj);
+    new Vue({
+        el:"#app",
+        data() {
+            return {
+                obj
+            }
+        }
+    })
+
+    /*
+     *上面的格式没有懂，后续着重理解
+     * */
+
+
+</script>
