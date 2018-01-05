@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-component></my-component>
+    </div>
+
+    <div id="example-2">
+        <my-component></my-component>
+    </div>
+
+    <div id="example-3">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+
+    <div id="example-4">
+        <child message="hello vue"></child>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component("my-component",{
+        template:"<h1>A custom component!</h1>"
+    });
+
+    new Vue({
+        el:"#example"
+    });
+
+    /*
+     *注册的第二种方式，一定要注意了解
+     * */
+    var child={
+        template:"<h2>Another custom component!</h2>"
+    };
+    new Vue({
+        el:"#example-2",
+        components:{
+            'my-component':child
+        }
+    });
+
+    var data={counter:0};
+    Vue.component('simple-counter',{
+        template:"<button v-on:click='counter+=1'>{{counter}}</button>",
+        data:function () {
+            return {
+                counter:0
+            }
+        }
+    });
+    new Vue({
+        el:"#example-3"
+    });
+
+    Vue.component("child",{
+        props:['message'],
+        template:"<span>{{message}}</span>"
+    });
+    new Vue({
+        el:"#example-4"
+    })
+</script>

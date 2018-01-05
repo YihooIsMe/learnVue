@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example-1">
+        <button v-on:click.once="counter+=1">Add 1</button>
+        <p>The button above has been clicked {{ counter }} times.</p>
+    </div>
+<div id="example-2">
+    <button v-on:click="greet">Greet</button>
+</div>
+<div id="example-3">
+    <button v-on:click="say('hi')">Say hi!</button>
+    <button v-on:click="say('what')">Say what!</button>
+</div>
+    <button id="example-4" v-on:click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+    </button>
+    <div id="app2">
+        <input type="text" v-model="msg">
+        <div>{{msg}}</div>
+    </div>
+
+</body>
+</html>
+<script>
+    var app=new Vue({
+        el:"#example-1",
+        data:{
+            counter:0
+        }
+    });
+
+    var example2=new Vue({
+        el:"#example-2",
+        data:{
+            name:"Vue.js"
+        },
+        methods:{
+            greet:function (event) {
+                alert('Hello '+this.name+"!");
+                if(event){
+                    alert(event.target.tagName);
+                }
+            }
+        }
+    });
+    example2.greet();
+
+    var example3=new Vue({
+        el:"#example-3",
+        methods:{
+            say:function (msg) {
+                alert(msg);
+            }
+        }
+    });
+
+    var example4=new Vue({
+        el:"#example-4",
+        methods:{
+            warn:function (msg, event) {
+                if(event){
+                    event.preventDefault();
+                }
+                alert(msg)
+            }
+        }
+    });
+
+    var app2=new Vue({
+        el:"#app2",
+        data:{
+            msg:""
+        }
+    })
+</script>

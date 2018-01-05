@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>显示过滤排序结果</title>
+    <script src="../js/vue/dist/vue.js"></script>
+    <style>
+        .divider{
+            border-bottom:1px solid #555555;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in filterNum">{{item}}</li>
+        </ul>
+    </div>
+    <ol id="app-2">
+        <li v-for="n in even()">{{n}}</li>
+    </ol>
+    <ol id="app-3">
+        <li v-for="n in even(numbers)">{{n}}</li>
+    </ol>
+
+    <ul id="app-4">
+        <li v-for="n in 10">{{n}}</li>
+    </ul>
+    <div id="app-5">
+        <ul>
+            <template v-for="item in items">
+                <li>{{item.msg}}</li>
+                <li class="divider"></li>
+            </template>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            numbers:[1,2,3,4,5,6,7,8,9]
+        },
+        computed:{
+            filterNum:function () {
+                return this.numbers.filter(function (value) {
+                    return value%2===0;
+                })
+            }
+        }
+    });
+
+    var app2=new Vue({
+        el:"#app-2",
+        data:{
+            numbers:[1,2,3,4,5,6,7,8,9,10]
+        },
+        methods:{
+            even:function () {
+                return this.numbers.filter(function (value) {
+                    return value%2===0;
+                })
+            }
+        }
+    });
+
+    var app3=new Vue({
+        el:"#app-3",
+        data:{
+            numbers:[1,2,3,4,5,6,7,8,9,10]
+        },
+        methods:{
+            even:function (numbers) {
+                return numbers.filter(function (value) {
+                    return value%2 === 0;
+                })
+            }
+        }
+    });
+
+    var app4=new Vue({
+        el:"#app-4"
+    });
+
+    var app5=new Vue({
+        el:"#app-5",
+        data:{
+            items:[
+                {msg:'hello',key:1},
+                {msg:'vue',key:2},
+                {msg:'my',key:3},
+                {msg:'name',key:4},
+                {msg:'is',key:5},
+                {msg:'yihu',key:6}
+            ]
+        }
+    })
+</script>
