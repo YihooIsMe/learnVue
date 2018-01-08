@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>渲染函数</title>
+    <script src="../js/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="example">
+    <anchored-heading :level="1">Hello world!</anchored-heading>
+</div>
+
+</body>
+</html>
+
+<script>
+    Vue.component('anchored-heading',{
+        render:function (createElement) {
+            return createElement(
+                "h"+this.level,
+                this.$slots.default
+            )
+        },
+        props:{
+            level:{
+                type:Number,
+                required:true
+            }
+        }
+    });
+
+    new Vue({
+        el:"#example"
+    })
+</script>

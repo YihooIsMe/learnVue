@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>混合对象</title>
+    <script src="../js/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var myMixin={
+        created:function () {
+            this.hello();
+        },
+        methods:{
+            hello:function () {
+                console.log('hello from mixin!')
+            }
+        }
+    };
+
+    var Component=Vue.extend({
+        mixins:[myMixin]
+    });
+
+    var component=new Component();
+
+
+    var mixin={
+        created:function () {
+            console.log('混合对象的钩子被调用');
+        }
+    };
+    new Vue({
+        mixins:[mixin],
+        created:function () {
+            console.log('组件钩子被调用')
+        }
+    });
+
+    var anotherMixin={
+        methods:{
+            foo:function () {
+                console.log("foo");
+            },
+            conflicting:function () {
+                console.log('from mixin');
+            }
+        }
+    };
+
+    var vm=new Vue({
+        mixins:[anotherMixin],
+        methods:{
+            bar:function () {
+                console.log('bar');
+            },
+            conflicting:function () {
+                console.log('from self');
+            }
+        }
+
+    });
+
+    console.log(vm.foo());
+    console.log(vm.bar());
+    console.log(vm.conflicting());
+</script>
