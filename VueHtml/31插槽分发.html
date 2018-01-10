@@ -22,6 +22,9 @@
         <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
     </blog-post>
 
+    <ol>
+        <li v-for="item in items" v-once>{{item}}</li>
+    </ol>
 </div>
 </body>
 </html>
@@ -41,6 +44,9 @@
     });
 
     new Vue({
-        el:"#example-1"
+        el:"#example-1",
+        data:{
+            items:[1,2,3,4,5,6,7,8,9]
+        }
     })
 </script>
