@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for和v-if优先级问题</title>
+    <script src="../js/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<ul id="example-1">
+    <li v-for="user in activeUsers" :key="user.id">{{user.text}}</li>
+</ul>
+
+<ul id="example-2" v-if="shouldShowUsers">
+    <li v-for="user in users" :key="user.id">{{user.text}}</li>
+</ul>
+</body>
+</html>
+
+<script>
+    var example1=new Vue({
+        el:"#example-1",
+        data:{
+          users:[{'id':1,'text':"hello",'isActive':false},{'id':2,'text':"vue",'isActive':true},{'id':3,'text':"created by yihu!",'isActive':true}]
+        },
+        computed:{
+            activeUsers:function () {
+                return this.users.filter(function (user) {
+                    return user.isActive
+                })
+            }
+        }
+    });
+
+    var example2=new Vue({
+        el:"#example-2",
+        data:{
+            users:[{'id':1,'text':"hello",'shouldShowUsers':false},{'id':2,'text':"vue",'shouldShowUsers':true},{'id':3,'text':"created by yihu!",'shouldShowUsers':true}],
+            shouldShowUsers:false
+        }
+    })
+</script>

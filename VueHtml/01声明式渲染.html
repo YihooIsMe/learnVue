@@ -9,6 +9,7 @@
     <div id="app">
         {{message}}
     </div>
+    <h1 title="你好，悬停的时候，你能看见我！">我是H1标题</h1>
     <div id="app-2">
         <span v-bind:title="message">
              鼠标悬停几秒钟查看此处动态绑定的提示信息！
@@ -36,6 +37,15 @@
         <!-- 创建一个 todo-item 组件的实例 -->
         <todo-item></todo-item>
     </ol>
+
+<div id="app-7">
+    <p>{{message}}</p>
+    <button v-on:click="reverseMsg()">逆转消息</button>
+</div>
+
+<div id="app-8">
+    <button onclick="show()">Show</button>
+</div>
 </body>
 </html>
 <script>
@@ -97,5 +107,21 @@
 
     var add=new Vue({
         el:"todo-item"
-    })
+    });
+
+    var app7=new Vue({
+        el:"#app-7",
+        data:{
+            message:"yihu"
+        },
+        methods:{
+            reverseMsg:function () {
+                this.message=this.message.split("").reverse().join("")
+            }
+        }
+    });
+
+    function show() {
+        alert(1);
+    }
 </script>

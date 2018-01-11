@@ -6,31 +6,41 @@
     <script src="../js/vue/dist/vue.js"></script>
 </head>
 <body>
-    <div id="app">
-        <ol>
-            <todo-item
-                    v-for="item in groceryList"
-                    v-bind:todo="item"
-                    v-bind:key="item.id">
-            </todo-item>
-        </ol>
-    </div>
+<div id="app-1">
+    <ul>
+        <todo-items
+                v-for="item in items"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+        >
+
+        </todo-items>
+    </ul>
+</div>
+
+<div id="app-2">
+    <todo-item></todo-item>
+</div>
 </body>
 </html>
 <script>
-    Vue.component("todo-item",{
+    Vue.component("todo-items",{
         props:['todo'],
         template:"<li>{{todo.text}}</li>"
     });
-
     var app1=new Vue({
-        el:"#app",
+        el:"#app-1",
         data:{
-            groceryList:[
-                { id: 0, text: '蔬菜' },
-                { id: 1, text: '奶酪' },
-                { id: 2, text: '随便其它什么人吃的东西' }
+            items:[
+                {text:"蔬菜",id:1},
+                {text:"水果",id:2},
+                {text:"蛋白质",id:3}
             ]
         }
-    })
+    });
+
+    Vue.component('todo-item',{
+        template:"<h1>我是todo-item的相关内容</h1>"
+    });
+    new Vue({}).$mount('#app-2')
 </script>
