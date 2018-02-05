@@ -8,7 +8,7 @@
 <body>
     <ul id="app">
         <li v-for="todo in todos" v-if="!todo.isComplete">
-            {{ todo }}
+            {{ todo.msg }}
         </li>
     </ul>
 <div id="todo-list-example">
@@ -20,29 +20,38 @@
         <li is="todo-item"
             v-for="(todo,index) in todos"
             :key="todo.id"
-            :title="todo.title"
-            @remove="todos.splice(index,1)"
+            :title1="todo.title"
+            @remove1="todos.splice(index,1)"
         ></li>
     </ul>
 </div>
+
 </body>
 </html>
 <script>
    var app=new Vue({
        el:"#app",
        data:{
-           todos:[1,2,3,4,5,6,7,8,9,10]
+           todos:[
+               {msg:1,isComplete:false},
+               {msg:2,isComplete:true},
+               {msg:3,isComplete:false},
+               {msg:4,isComplete:true},
+               {msg:5,isComplete:false},
+               {msg:6,isComplete:true},
+               {msg:7,isComplete:false}
+           ]
        }
    });
 
    Vue.component('todo-item', {
        template: '\
     <li>\
-      {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
+      {{ title1 }}\
+      <button v-on:click="$emit(\'remove1\')">X</button>\
     </li>\
   ',
-       props: ['title']
+       props: ['title1']
    });
 
    new Vue({

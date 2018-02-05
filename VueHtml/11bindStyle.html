@@ -8,6 +8,8 @@
 <body>
 <div id="app" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">This is content!</div>
 <div id="app-2" v-bind:style="styleObj">This is content!</div>
+<div id="app-3" :style="[baseStyles, overridingStyles]">I am another content!</div>
+<div id="app-4" :style="{display:['-webkit-box', '-ms-flexbox', 'flex']}">Content four</div>
 </body>
 </html>
 <script>
@@ -25,8 +27,26 @@
            styleObj:{
                color:"pink",
                fontSize:"30px",
-               fontWeight:"bold"
+               'font-weight':"bold"
            }
        }
+   });
+
+   var app3=new Vue({
+       el:"#app-3",
+       data:{
+           baseStyles:{
+               color:"yellow",
+               fontSize:"40px"
+           },
+           overridingStyles:{
+               fontWeight:"100"
+           }
+       }
+   });
+
+   var app4=new Vue({
+       el:"#app-4"
    })
+
 </script>

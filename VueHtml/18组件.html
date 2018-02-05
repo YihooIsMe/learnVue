@@ -23,6 +23,14 @@
     <div id="example-4">
         <child message="hello vue"></child>
     </div>
+    <table id="example-5">
+        <tr is="my-row"></tr>
+        <tr is="my-row2"></tr>
+    </table>
+
+    <div id="example-6">
+        <child my-message="add new vue message!"></child>
+    </div>
 </body>
 </html>
 <script>
@@ -66,5 +74,26 @@
     });
     new Vue({
         el:"#example-4"
+    });
+
+    Vue.component('my-row',{
+        template:"<tr><td>姓名</td><td>职业</td></tr>"
+    });
+
+    Vue.component('my-row2',{
+        template:"<tr><td>测试</td><td>web</td></tr>"
+    });
+
+    new Vue({
+        el:"#example-5"
+    });
+
+    Vue.component("child",{
+        props:['myMessage'],
+        template:"<div>{{myMessage}}</div>"
+    });
+    new Vue({
+        el:"#example-6"
     })
+
 </script>

@@ -24,7 +24,7 @@
         Now you see me
     </div>
     <div v-else>
-        Now you don't
+        Now you don't see me!
     </div>
 </div>
 <div id="app-4">
@@ -44,12 +44,17 @@
 <div id="app-5">
     <template v-if="loginType === 'username'">
         <label>Username</label>
-        <input placeholder="Enter your username" key="username-input">
+        <input placeholder="Enter your username" key="input-username">
     </template>
     <template v-else>
         <label>Email</label>
-        <input placeholder="Enter your email address" key="email-input">
+        <input placeholder="Enter your email address" key="email-username">
     </template>
+    <br>
+    <button @click="toggle">Toggle login type</button>
+</div>
+<div id="app-6">
+    <h1 v-show="ok">hello,welcome to vue world!</h1>
 </div>
 </body>
 </html>
@@ -82,7 +87,24 @@
     var app5=new Vue({
         el:"#app-5",
         data:{
-            loginType:""
+            loginType:"username"
+        },
+        methods:{
+            toggle:function () {
+                if(this.loginType==="username"){
+                    this.loginType="";
+                }else {
+                    this.loginType="username";//复用已有的元素，所以input还是沿用原来的
+                }
+            }
+        }
+    });
+
+
+    var app6=new Vue({
+        el:"#app-6",
+        data:{
+            ok:true
         }
     })
 </script>
