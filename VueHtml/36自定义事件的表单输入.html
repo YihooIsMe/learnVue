@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件</title>
+    <script src="../js/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <p>{{total}}</p>
+        <button-control @increament="increamentTotal"></button-control>
+        <button-control @increament="increamentTotal"></button-control>
+    </div>
+</body>
+</html>
+<script>
+    Vue.component('button-control',{
+        template:"<button v-on:click='incream'>{{counter}}</button>",
+        data:function () {
+            return {
+                counter:0
+            }
+        },
+        methods:{
+            incream:function () {
+                this.counter+=1;
+                this.$emit('increament');
+            }
+        }
+    });
+
+    new Vue({
+        el:"#example",
+        data:{
+            total:0
+        },
+        methods:{
+            increamentTotal:function () {
+                this.total+=1;
+            }
+        }
+    })
+</script>
