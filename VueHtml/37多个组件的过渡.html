@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡</title>
+    <script src="../js/vue/dist/vue.js"></script>
+    <style>
+        .component-fade-enter-active, .component-fade-leave-active {
+            transition: opacity .5s ease;
+        }
+        .component-fade-enter, .component-fade-leave-to
+            /* .component-fade-leave-active for below version 2.1.8 */ {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="example">
+    <input type="radio" name="select" id="a" checked @click="view='v-a'">
+    <label for="a">A</label>
+    <input type="radio" name="select" id="b" @click="view='v-b'">
+    <label for="b">B</label>
+    <transition name="component-fade" mode="out-in">
+        <component v-bind:is="view"></component>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    var app=new Vue({
+        el:"#example",
+        data:{
+            view:"v-a"
+        },
+        components:{
+            "v-a":{
+                template:"<div>Component A</div>"
+            },
+            "v-b":{
+                template:"<div>Component B</div>"
+            }
+        }
+    })
+</script>

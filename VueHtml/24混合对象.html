@@ -68,4 +68,28 @@
     console.log(vm.foo());
     console.log(vm.bar());
     console.log(vm.conflicting());
+
+
+    var mixin1={
+        data:function () {
+            return {
+                message:"hello",
+                foo:"abc"
+            }
+        }
+    };
+
+    new Vue({
+        mixins:[mixin1],
+        data:function () {
+            return {
+                message:"goodbye",
+                bar:"def"
+            }
+        },
+        created:function () {
+            console.log(this.$data);
+        }
+    });
+
 </script>

@@ -17,13 +17,21 @@
             opacity: 0;
             transform: translateY(30px);
         }
+        .list-move{
+            transition:all 1s;
+        }
+        /*上面是v-move效果，往右移动有一个过渡的效果*/
+        .list-leave-active{
+            position: absolute;
+        }
+        /*删除的时候，往前挤有一个过渡的效果*/
     </style>
 </head>
 <body>
 <div id="list-demo" class="demo">
     <button v-on:click="add">Add</button>
     <button v-on:click="remove">Remove</button>
-    <transition-group name="list" tag="div">
+    <transition-group name="list" tag="div" >
         <span v-for="item in items" v-bind:key="item" class="list-item">
             {{item}}
         </span>
@@ -49,5 +57,17 @@
                 this.items.splice(this.randomIndex(),1)
             }
         }
-    })
+    });
+
+
+    function swit(num) {
+        switch (true){
+            case num>0&&num<2:return num;
+            case num>=2&&num<5:return num;
+            case num>5:return num;
+        }
+    }
+
+    console.log(swit(1));
+    console.log(swit(3));//注意此时return语句，没有用到break；
 </script>

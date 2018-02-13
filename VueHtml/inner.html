@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inner content</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            background-color: red;
+        }
+        #innerContent{
+            width: 800px;
+            height: 300px;
+            border:1px solid black;
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="innerContent">
+        <button id="closeBtn">close</button>
+    </div>
+</body>
+</html>
+<script>
+    var closeBtn=document.getElementById("closeBtn");
+    closeBtn.onclick=function (ev) {
+        parent.closeIframe()
+    }
+</script>

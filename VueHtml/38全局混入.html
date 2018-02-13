@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>混合对象</title>
+    <script src="../js/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    Vue.mixin({
+        created:function () {
+            var myOption=this.$options.myOption;//注意：这种获取数据的方式！
+            console.log(myOption);
+        }
+    });
+
+    new Vue({
+        myOption:"hello vue!"
+    });
+
+
+    Vue.mixin({
+        created:function () {
+            var otherOption=this.msg;//同时注意这种写法；
+            console.log(otherOption);
+        }
+    });
+
+    new Vue({
+        data:{
+            msg:"yihu"
+        }
+    })
+</script>

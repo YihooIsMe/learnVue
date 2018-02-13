@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>parent content</title>
+    <style>
+        html,body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+    </style>
+</head>
+<body>
+<iframe src="inner.html" id="iframe" frameborder="0" width="100%" height="70%"></iframe>
+</body>
+</html>
+<script>
+    function closeIframe() {
+        document.getElementById("iframe").style.display="none";
+    }
+</script>
