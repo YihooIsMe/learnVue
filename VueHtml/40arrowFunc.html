@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+
+<script>
+    'use strict';
+    var fn=x=>x*x;
+    console.log(fn(3));
+
+    var fn2=x=>{
+        if (x>0){
+            return x*x;
+        }else {
+            return -x*x;
+        }
+    };
+
+    console.log(fn2(-3));
+
+    //两个参数；
+    var fn3=(x,y)=>x*x+y*y;
+    console.log(fn3(2,3));
+
+    //0个参数；
+    var fn4=()=>3.14;
+    console.log(fn4());
+
+    //可变参数；
+    var fn5=(x,y,reset)=>{
+        var i,sum=x+y;
+        for (i=0;i<reset.length;i++){
+            sum+=reset[i];
+        }
+        return sum;
+    };
+    console.log(fn5(1,3,[1,2,3,4,5,6,7,8,9,10]));
+
+    var fn6=x=>({foo:x});
+    console.log(fn6('dream'))
+</script>
+</body>
+</html>
