@@ -14,7 +14,7 @@
 	padding:0;
 }
 html,body{
- margin:10px;
+ margin:0;
 }
 
 </style>
